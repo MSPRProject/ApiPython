@@ -6,28 +6,28 @@
 
     1. Cloner le dépôt
 
-        ```bash
+        
             git clone https://github.com/MSPRProject/ApiPython.git
             cd ApiPython
-        ```
+     
 
     2. Créer un environement virtuel python
 
-        ```bash
+        
             python3 -m venv venv
             source venv/bin/activate
-        ```
+      
     3. Installer les dépendances
 
-        ```bash
+        
             pip install -r requirements.txt
-        ```
+        
 
     4. Lancer le serveur FastAPI
 
-        ```bash
+        
             py start.py
-        ```
+        
 
 ### Route de l'API
 
