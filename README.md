@@ -1,31 +1,26 @@
 ### FAST API
 
-    Documentation de FastAPI(DOCS)["https://fastapi.tiangolo.com/"] 
+    Documentation de FastAPI[FastAPI Docs](https://fastapi.tiangolo.com/)
 
 ### Installation Du Projet
 
     1. Cloner le dépôt
 
-        
             git clone https://github.com/MSPRProject/ApiPython.git
             cd ApiPython
      
-
     2. Créer un environement virtuel python
 
-        
             python3 -m venv venv
             source venv/bin/activate
       
     3. Installer les dépendances
 
-        
             pip install -r requirements.txt
         
 
     4. Lancer le serveur FastAPI
 
-        
             py start.py
         
 
