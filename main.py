@@ -1,7 +1,6 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.responses import Response
 import requests
-import os 
 from dotenv import dotenv_values, load_dotenv
 load_dotenv()
 
@@ -15,25 +14,28 @@ headers = {
     "Authorization": f"Bearer {BEARER_TOKEN}",
     "Content-Type": "application/json"
 }
-try: 
-    if BEARER_TOKEN:
-        @app.get("/prompt")
-        def get_data():
-            if response := requests.get(url).status_code == 200:
-                countries = requests.get(url + f"/countries")
-                pandemics = requests.get(url + f"/pandemics")
-                infections = requests.get(url + f"/infections")
-                reports = requests.get(url + f"/repors")
-                response = {
-                    "countries": countries.json(),
-                    "pandemics": pandemics.json(),
-                    "infections": infections.json(),
-                    "reports": reports.json()
-                }
-                return response
-            else:
-                return HTMLResponse(status_code=404)
-    else:
-        print("Unauthorized access: Bearer_token is not set")
-except Exception as e:
-    print(f"An error occurred: {e}")
+
+if BEARER_TOKEN is None or BEARER_TOKEN == "":
+    raise ValueError("Bearer token is not set in the .env file.")
+
+@app.get("/prompt")
+def get_data():
+    countries = requests.get(url + f"/countries")
+    pandemics = requests.get(url + f"/pandemics")
+    infections = requests.get(url + f"/infections")
+    reports = requests.get(url + f"/repors")
+
+    if countries.status_code != 200 or \
+       pandemics.status_code != 200 or \
+       infections.status_code != 200 or \
+       reports.status_code != 200:
+        return Response(status_code=500)
+
+    response = {
+        "countries": countries.json(),
+        "pandemics": pandemics.json(),
+        "infections": infections.json(),
+        "reports": reports.json()
+    }
+    return response
+
