@@ -9,11 +9,17 @@ cd ApiPython
 ```
 
 2. Créer un environement virtuel python
+
+Linux : 
 ```bash
-python3 -m venv venv
+python3 -m venv nom_du_venv
 source venv/bin/activate
 ```
-    
+Windows : 
+```bash
+python3 -m venv nom_du_venv
+venv\Scripts\activate
+```
 3. Installer les dépendances
 ```bash
 pip install -r requirements.txt
